@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const path = require('path');
+
 
 const app = express();
 app.use(cors());
@@ -27,6 +29,17 @@ app.get('/balance', (req, res) => {
     else if (t.type === 'expense') expense += t.amount;
   });
   res.json({ income, expense, balance: income - expense });
+});
+
+const ROOT_DIR = path.resolve(__dirname, '..');
+app.get('/openapi.yaml', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'openapi.yaml'));
+});
+app.get('/.well-known/ai-plugin.json', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'ai-plugin.json'));
+});
+app.get('/logo.png', (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'logo.png')); // optional
 });
 
 const PORT = process.env.PORT || 3000;

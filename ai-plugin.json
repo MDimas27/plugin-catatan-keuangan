@@ -1,0 +1,18 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "Catatan Keuangan AI",
+    "name_for_model": "catatan_keuangan_ai",
+    "description_for_human": "Membantu mencatat dan melihat pengeluaran/pemasukan.",
+    "description_for_model": "Gunakan plugin ini untuk mencatat pengeluaran, pemasukan, dan menghitung saldo pengguna.",
+    "auth": {
+      "type": "none"
+    },
+    "api": {
+      "type": "openapi",
+      "url": "https://7071-101-255-150-125.ngrok-free.app/openapi.yaml"
+    },
+    "logo_url": "https://7071-101-255-150-125.ngrok-free.app/logo.png",
+    "contact_email": "support@example.com",
+    "legal_info_url": "http://example.com/legal"
+  }
+  

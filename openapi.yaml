@@ -1,0 +1,40 @@
+openapi: 3.0.1
+info:
+  title: Catatan Keuangan Plugin
+  description: Plugin untuk mencatat pengeluaran dan pemasukan
+  version: "1.0.0"
+servers:
+  - url: https://7071-101-255-150-125.ngrok-free.app
+
+paths:
+  /transactions:
+    get:
+      summary: Lihat semua transaksi
+      responses:
+        '200':
+          description: Daftar transaksi
+    post:
+      summary: Tambah transaksi baru
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [income, expense]
+                amount:
+                  type: number
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Transaksi berhasil ditambahkan
+  /balance:
+    get:
+      summary: Lihat total pemasukan, pengeluaran, dan saldo
+      responses:
+        '200':
+          description: Ringkasan saldo
