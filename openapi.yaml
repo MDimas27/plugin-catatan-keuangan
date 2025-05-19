@@ -7,14 +7,45 @@ servers:
   - url: https://7071-101-255-150-125.ngrok-free.app
 
 paths:
+  /login:
+    post:
+      summary: Login untuk mendapatkan token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Token berhasil dibuat
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        "400":
+          description: Gagal login
+
   /transactions:
     get:
       summary: Lihat semua transaksi
+      security:
+        - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: Daftar transaksi
     post:
       summary: Tambah transaksi baru
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -30,11 +61,30 @@ paths:
                 description:
                   type: string
       responses:
-        '201':
+        "201":
           description: Transaksi berhasil ditambahkan
+
   /balance:
     get:
       summary: Lihat total pemasukan, pengeluaran, dan saldo
+      security:
+        - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: Ringkasan saldo
+
+  /export/pdf:
+    get:
+      summary: Unduh laporan transaksi dalam bentuk PDF
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: File PDF berisi laporan transaksi
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

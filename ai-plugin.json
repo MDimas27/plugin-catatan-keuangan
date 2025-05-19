@@ -5,7 +5,11 @@
     "description_for_human": "Membantu mencatat dan melihat pengeluaran/pemasukan.",
     "description_for_model": "Gunakan plugin ini untuk mencatat pengeluaran, pemasukan, dan menghitung saldo pengguna.",
     "auth": {
-      "type": "none"
+      "type": "user_http",
+      "authorization_type": "bearer",
+      "verification_tokens": {
+        "openai": "dummy-verification-token"
+      }
     },
     "api": {
       "type": "openapi",
